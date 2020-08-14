@@ -1,40 +1,28 @@
-# Pedestrian-Synthesis-GAN
-See arxiv: https://arxiv.org/abs/1804.02047
-</br>
-Pedestrian-Synthesis-GAN: Generating Pedestrian Data in Real Scene and Beyond
-<img src="imgs/D.png"></img>
-</br></br></br>
+# Imbalanced-Dataset-Project
+
+
 
 ## Preparing
 Prepare your data before training. The format of your data should follow the file in `datasets`.
+You can downlaod Cityscapes dataset and run  `python get_bbox_seg.py`
+or download processed dataset [here](https://drive.google.com/file/d/1mSYC_drMkVwapKPLJaMSJ-sloFiBTMLm/view?usp=sharing)
 ## Training stage
 ```bash
-python train.py --dataroot data_path --name model_name --model pix2pix --which_model_netG unet_256 --which_direction BtoA --lambda_A 100 --dataset_mode aligned --use_spp --no_lsgan --norm batch
+python train.py --dataroot ./dataset --name model_name --model seg2pix --which_model_netG unet_256  --lambda_A 100 --dataset_mode aligned --use_spp --no_lsgan --norm batch
 ```
 
 ## Testing stage
 ```bash
-python test.py --dataroot data_path --name model_name --model pix2pix --which_model_netG unet_256 --which_direction BtoA  --dataset_mode aligned --use_spp --norm batch
+python test.py --dataroot data_path --name model_name --model seg2pix --which_model_netG unet_256   --dataset_mode aligned --use_spp --norm batch
 ```
-## Vision
-Run `python -m visdom.server` to see the training process.
-</br>
+## Data augmentation stage
+The results are under folder aug_pedestrian.
+Follow the instruction in  <a href="https://github.com/open-mmlab/mmdetection">MMdetection</a> to convert Cityscapes to COCO fomat.
+Then  run `python data_aug.py`
 
-<img src="imgs/compare_3line.png"></img>
-<img src="imgs/compare_cityscapes_1.png"></img>
-<img src="imgs/compare_Tsinghua_1.png"></img>
-
-## Citation
-If you find this work useful for your research, please cite:
-```
-@article{ouyang2018pedestrian,
-  title={Pedestrian-Synthesis-GAN: Generating Pedestrian Data in Real Scene and Beyond},
-  author={Ouyang, Xi and Cheng, Yu and Jiang, Yifan and Li, Chun-Liang and Zhou, Pan},
-  journal={arXiv preprint arXiv:1804.02047},
-  year={2018}
-}
-```
+## Evaluation stage
+Put the   new Cityscapes dataset under  mmdection folder .Follow the instruction in  <a href="https://github.com/open-mmlab/mmdetection">MMdetection</a>  to train a object detector and evaluate it 
 
 ## Acknowledgments
-Heavily borrow the code from <a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix">pix2pix</a>
+Heavily borrow the code from <a href="https://github.com/yueruchen/Pedestrian-Synthesis-GAN">PSGAN</a>
 
