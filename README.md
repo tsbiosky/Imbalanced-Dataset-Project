@@ -19,7 +19,7 @@ python test.py --dataroot data_path --name model_name --model seg2pix --which_mo
 The results are under folder aug_pedestrian.
 Follow the instruction in  <a href="https://github.com/open-mmlab/mmdetection">MMdetection</a> to convert Cityscapes to COCO fomat.
 Then  run</br> `python data_aug.py`
-
+![image](https://github.com/tsbiosky/Imbalanced-Dataset-Project/.png)
 ## Evaluation stage
 Put the   new Cityscapes dataset under  mmdection folder .Follow the instruction in  <a href="https://github.com/open-mmlab/mmdetection">MMdetection</a>  to train a object detector and evaluate it 
 
